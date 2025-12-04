@@ -6,8 +6,8 @@ module threecounter(
     output wire [5:0] dig
 );
 
-    wire [3:0] digit;        // normal BCD from counter
-    wire [3:0] bcd_inv;      // inverted BCD for sevenseg
+    wire [3:0] digit;        
+    wire [3:0] bcd_inv;      
 
     counter bcd_counter (
         .clk(clk),
@@ -16,12 +16,11 @@ module threecounter(
         .cnt(digit)
     );
 
-    assign bcd_inv = ~digit;  // your decoder expects inverted BCD
+    assign bcd_inv = ~digit;  
 
     sevenseg display (
         .bcd(bcd_inv),
         .disp(disp),
         .dig(dig)
     );
-
 endmodule
