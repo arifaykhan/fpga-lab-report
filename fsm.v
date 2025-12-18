@@ -1,10 +1,10 @@
 module fsm(
-    input wire clk,           // 50MHz System Clock
-    input wire reset,         // Reset Button (Active Low)
-    input wire x,        // Serial Input Button (Active Low: 0=Press)
-    output wire led,    // Match LED (Active Low: 0=ON)
-    output wire [6:0] disp,// 7-segment segments
-    output wire [5:0] dig// 7-segment digit select
+    input wire clk,
+    input wire reset,
+    input wire x, 
+    output wire led,
+    output wire [6:0] disp,
+    output wire [5:0] dig
 );
     wire x_input_corrected;
     assign x_input_corrected = ~x; 
@@ -30,9 +30,9 @@ module fsm(
     wire [3:0] state;
 
     fsmseq u_fsm (
-        .clk(slow_clk),        // Slow clock
+        .clk(slow_clk),
         .reset_n(reset),
-        .x(x_input_corrected), // Use the inverted input
+        .x(x_input_corrected),
         .z(z_out_fsm),
         .state_out(state)
     );
@@ -43,5 +43,4 @@ module fsm(
         .disp(disp),
         .dig(dig)
     );
-
 endmodule
